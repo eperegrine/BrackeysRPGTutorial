@@ -24,9 +24,20 @@ public class PlayerController : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit, 100f, MovementMask))
             {
-                motor.Move(hit.point);
+                motor.MoveToPoint(hit.point);
                 //Stop focusing
             }
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100f))
+            {
+                // Check if hit an interactable, if so , set as focus
+            }
+        }
     }
+
 }

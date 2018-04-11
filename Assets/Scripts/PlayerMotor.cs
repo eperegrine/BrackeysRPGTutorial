@@ -13,7 +13,7 @@ public class PlayerMotor : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
 	}
 	
-	public void Move(Vector3 target)
+	public void MoveToPoint(Vector3 target)
     {
         agent.SetDestination(target);
     }
