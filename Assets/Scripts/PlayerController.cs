@@ -24,8 +24,6 @@ public class PlayerController : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit, 100f, MovementMask))
             {
-                print("We hit " + hit.collider.name + " " + hit.point);
-                //Move to hit location
                 motor.Move(hit.point);
                 //Stop focusing
             }
