@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bd392fcf0fd0424c8098534aefafe54, type: 3}
-  m_Name: Test Item
+  m_Name: Test 1
   m_EditorClassIdentifier: 
-  name: Test
-  icon: {fileID: 0}
+  name: Test 1
+  icon: {fileID: 21300000, guid: d2817fd45790228488678aaf52b28c2d, type: 3}
   isDefaultItem: 0
