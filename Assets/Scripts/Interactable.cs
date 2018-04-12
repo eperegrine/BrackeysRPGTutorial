@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour
     public virtual void Interact()
     {
         //This method is meant to be overwritten
-        print("Interacting with " + name);
+        //print("Interacting with " + name);
     }
 
     private void Update()
@@ -45,6 +45,8 @@ public class Interactable : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (interactionTransform == null) interactionTransform = transform;
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(interactionTransform.position, Radius);
     }
