@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour {
+
+    public Interactable focus;
 
     public Camera cam;
     public LayerMask MovementMask;
@@ -25,7 +28,7 @@ public class PlayerController : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 100f, MovementMask))
             {
                 motor.MoveToPoint(hit.point);
-                //Stop focusing
+                RemoveFocus();
             }
         }
         if (Input.GetMouseButtonDown(1))
@@ -35,9 +38,31 @@ public class PlayerController : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit, 100f))
             {
-                // Check if hit an interactable, if so , set as focus
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                }
             }
         }
     }
 
+    void SetFocus(Interactable newFocus)
+    {
+        if (newFocus != focus)
+        {
+            if (focus != null) focus.OnDeFocused();
+            focus = newFocus;
+            motor.FollowTarget(newFocus.interactionTransform, newFocus.Radius * .8f);
+        }
+
+        newFocus.OnFocused(transform);
+    }
+
+    void RemoveFocus()
+    {
+        if (focus != null) focus.OnDeFocused();
+        focus = null;
+        motor.StopFollowingTarget();
+    }
 }
